@@ -67,6 +67,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Headquarter.cs" />
+    <Compile Include="Model\ITaskObserver.cs" />
+    <Compile Include="Model\MessageContainer.cs" />
+    <Compile Include="Model\Message\AbstractMessage.cs" />
+    <Compile Include="Model\Message\PlaceholderMessage.cs" />
+    <Compile Include="Model\Message\SimpleMessage.cs" />
+    <Compile Include="Model\Task\AbstractTask.cs" />
+    <Compile Include="Model\Task\InnerDotNet\IdnDashChange.cs" />
+    <Compile Include="Model\Task\Option\AbstractOptionClasses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Enum\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
