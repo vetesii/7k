@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using vBook.Model.Message;
 
-namespace vBook.Model
+namespace _7k.Model
 {
     class MessageContainer : ITaskObserver
     {

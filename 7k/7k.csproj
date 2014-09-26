@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Context\AbstractContext.cs" />
-    <Compile Include="Model\Context\Context.cs" />
+    <Compile Include="Model\Context\ContextContainer.cs" />
     <Compile Include="Model\Context\WordContext.cs" />
     <Compile Include="Model\Headquarter.cs" />
     <Compile Include="Model\ITaskObserver.cs" />
@@ -77,6 +77,8 @@
     <Compile Include="Model\Message\PlaceholderMessage.cs" />
     <Compile Include="Model\Message\SimpleMessage.cs" />
     <Compile Include="Model\MultiLanguageTextProxy.cs" />
+    <Compile Include="Model\Notifier.cs" />
+    <Compile Include="Model\SpecialCharacters.cs" />
     <Compile Include="Model\Task\AbstractTask.cs" />
     <Compile Include="Model\Task\InnerDotNet\IdnDashChange.cs" />
     <Compile Include="Model\Options.cs" />

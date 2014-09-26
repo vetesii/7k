@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using vBook.Model.Task;
+using _7k.Model.Task;
 
 namespace _7k.Model.Task.InnerDotNet
 {
@@ -46,12 +46,7 @@ namespace _7k.Model.Task.InnerDotNet
         }
         */
 
-        public override List<Object> getRequiredOptionList()
-        {
-            return new List<Object>();
-        }
-
-        protected override void EmbemedStart(Guid id)
+        public override void Run()
         {
             ///
             /// Mit mire kellene használni:
@@ -65,44 +60,54 @@ namespace _7k.Model.Task.InnerDotNet
 
 
             // en_dash-re cserélés
-            wordFindAndReplace(SpecialCharacters.minus, SpecialCharacters.enDash);
-            wordFindAndReplace(SpecialCharacters.emDash, SpecialCharacters.enDash);
-            wordFindAndReplace(SpecialCharacters.hyphen, SpecialCharacters.enDash);
-            wordFindAndReplace(SpecialCharacters.hyphenNonBreaking, SpecialCharacters.enDash);
-            wordFindAndReplace(SpecialCharacters.figureDash, SpecialCharacters.enDash);
-            wordFindAndReplace(SpecialCharacters.horizontalBar, SpecialCharacters.enDash);
+            //wordFindAndReplace(SpecialCharacters.minus, SpecialCharacters.enDash);
+            //wordFindAndReplace(SpecialCharacters.emDash, SpecialCharacters.enDash);
+            //wordFindAndReplace(SpecialCharacters.hyphen, SpecialCharacters.enDash);
+            //wordFindAndReplace(SpecialCharacters.hyphenNonBreaking, SpecialCharacters.enDash);
+            //wordFindAndReplace(SpecialCharacters.figureDash, SpecialCharacters.enDash);
+            //wordFindAndReplace(SpecialCharacters.horizontalBar, SpecialCharacters.enDash);
 
-            wordFindAndReplace(SpecialCharacters.UFODash, SpecialCharacters.enDash);
-
-
-            wordFindAndReplace(@"." + SpecialCharacters.enDash, @". " + SpecialCharacters.enDash);
-            wordFindAndReplace(@"!" + SpecialCharacters.enDash, @"! " + SpecialCharacters.enDash);
-            wordFindAndReplace(@"?" + SpecialCharacters.enDash, @"? " + SpecialCharacters.enDash);
+            //wordFindAndReplace(SpecialCharacters.UFODash, SpecialCharacters.enDash);
 
 
-            // Kötöjelek visszarakása a megfelelő helyekre (ez rövidebb, mint az en_dash)
-            wordFindAndReplaceWithRegex(@"([a-zA-Z0-9])" + SpecialCharacters.enDash + @"( és )", @"\1" + SpecialCharacters.minus + @"\2");
-            wordFindAndReplaceWithRegex(@"([a-zA-Z])( és )" + SpecialCharacters.enDash + @"([a-zA-z])", @"\1\2" + SpecialCharacters.minus + @"\3");
-            wordFindAndReplaceWithRegex(@"([a-zA-Z0-9])" + SpecialCharacters.enDash + @"( vagy )", @"\1" + SpecialCharacters.minus + @"\2");
-            wordFindAndReplaceWithRegex(@"([a-zA-Z])( vagy )" + SpecialCharacters.enDash + @"([a-zA-z])", @"\1\2" + SpecialCharacters.minus + @"\3");
-
-            wordFindAndReplaceWithRegex(@"([a-zA-Z])" + SpecialCharacters.enDash + @"(, illetve )", @"\1" + SpecialCharacters.minus + @"\2");
-
-            wordFindAndReplaceWithRegex(@"(”)" + SpecialCharacters.enDash + @"([a-zA-Z0-9])", @"\1" + SpecialCharacters.minus + @"\2");
-            wordFindAndReplaceWithRegex(@"([a-zA-Z0-9])" + SpecialCharacters.enDash + @"([a-zA-Z0-9])", @"\1" + SpecialCharacters.minus + @"\2");
+            //wordFindAndReplace(@"." + SpecialCharacters.enDash, @". " + SpecialCharacters.enDash);
+            //wordFindAndReplace(@"!" + SpecialCharacters.enDash, @"! " + SpecialCharacters.enDash);
+            //wordFindAndReplace(@"?" + SpecialCharacters.enDash, @"? " + SpecialCharacters.enDash);
 
 
-            // Kezdő gondolatjel után nemtörhető szóköz
-            //installEnQuad(new Guid(), false)
-            wordFindAndReplace(@"^p" + SpecialCharacters.enDash + @" ", @"^p" + SpecialCharacters.enDash + SpecialCharacters.enQuad);
-            wordFindAndReplaceWithRegex(@"(^13" + SpecialCharacters.enDash + @")([a-zA-Z0-9…])", @"\1" + SpecialCharacters.enQuad + @"\2");
+            //// Kötöjelek visszarakása a megfelelő helyekre (ez rövidebb, mint az en_dash)
+            //wordFindAndReplaceWithRegex(@"([a-zA-Z0-9])" + SpecialCharacters.enDash + @"( és )", @"\1" + SpecialCharacters.minus + @"\2");
+            //wordFindAndReplaceWithRegex(@"([a-zA-Z])( és )" + SpecialCharacters.enDash + @"([a-zA-z])", @"\1\2" + SpecialCharacters.minus + @"\3");
+            //wordFindAndReplaceWithRegex(@"([a-zA-Z0-9])" + SpecialCharacters.enDash + @"( vagy )", @"\1" + SpecialCharacters.minus + @"\2");
+            //wordFindAndReplaceWithRegex(@"([a-zA-Z])( vagy )" + SpecialCharacters.enDash + @"([a-zA-z])", @"\1\2" + SpecialCharacters.minus + @"\3");
+
+            //wordFindAndReplaceWithRegex(@"([a-zA-Z])" + SpecialCharacters.enDash + @"(, illetve )", @"\1" + SpecialCharacters.minus + @"\2");
+
+            //wordFindAndReplaceWithRegex(@"(”)" + SpecialCharacters.enDash + @"([a-zA-Z0-9])", @"\1" + SpecialCharacters.minus + @"\2");
+            //wordFindAndReplaceWithRegex(@"([a-zA-Z0-9])" + SpecialCharacters.enDash + @"([a-zA-Z0-9])", @"\1" + SpecialCharacters.minus + @"\2");
 
 
-            // Egyéb szépítés miután az en_dash-ek a helyükön vannak
-            wordFindAndReplace(SpecialCharacters.enDash + SpecialCharacters.threeDot, SpecialCharacters.enDash + @" " + SpecialCharacters.threeDot);
-            wordFindAndReplace(SpecialCharacters.enDash + SpecialCharacters.enQuad + SpecialCharacters.threeDot + @" ", SpecialCharacters.enDash + SpecialCharacters.enQuad + SpecialCharacters.threeDot);
-            wordFindAndReplace(SpecialCharacters.enDash + @" " + SpecialCharacters.threeDot + @" ", SpecialCharacters.enDash + @" " + SpecialCharacters.threeDot);
+            //// Kezdő gondolatjel után nemtörhető szóköz
+            ////installEnQuad(new Guid(), false)
+            //wordFindAndReplace(@"^p" + SpecialCharacters.enDash + @" ", @"^p" + SpecialCharacters.enDash + SpecialCharacters.enQuad);
+            //wordFindAndReplaceWithRegex(@"(^13" + SpecialCharacters.enDash + @")([a-zA-Z0-9…])", @"\1" + SpecialCharacters.enQuad + @"\2");
+
+
+            //// Egyéb szépítés miután az en_dash-ek a helyükön vannak
+            //wordFindAndReplace(SpecialCharacters.enDash + SpecialCharacters.threeDot, SpecialCharacters.enDash + @" " + SpecialCharacters.threeDot);
+            //wordFindAndReplace(SpecialCharacters.enDash + SpecialCharacters.enQuad + SpecialCharacters.threeDot + @" ", SpecialCharacters.enDash + SpecialCharacters.enQuad + SpecialCharacters.threeDot);
+            //wordFindAndReplace(SpecialCharacters.enDash + @" " + SpecialCharacters.threeDot + @" ", SpecialCharacters.enDash + @" " + SpecialCharacters.threeDot);
         }
 
+
+        protected override void preDuplicate(AbstractTask task)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void postDuplicate(AbstractTask task)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
