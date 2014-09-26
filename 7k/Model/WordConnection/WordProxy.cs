@@ -7,7 +7,7 @@ using Microsoft.Office.Interop.Word;
 using Word = Microsoft.Office.Interop.Word;
 using System.Runtime.InteropServices;
 
-namespace FoxTextCleaner.Models
+namespace _7k.Model
 {
     public class WordProxy : Notifier
     {
@@ -32,7 +32,8 @@ namespace FoxTextCleaner.Models
 
                 foreach (Document item in wApplication.Documents)
                 {
-                    MessageWall.Instance.sendMessage(Guid.NewGuid(), item.FullName, System.Windows.Media.Brushes.White);
+                    // TODO megcsinálni
+                    // MessageWall.Instance.sendMessage(Guid.NewGuid(), item.FullName, System.Windows.Media.Brushes.White);
                 }
             }
             catch (COMException)
