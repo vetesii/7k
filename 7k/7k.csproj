@@ -80,8 +80,10 @@
     <Compile Include="Model\Notifier.cs" />
     <Compile Include="Model\SpecialCharacters.cs" />
     <Compile Include="Model\Task\AbstractTask.cs" />
+    <Compile Include="Model\Task\AbstractWordCleanerTask.cs" />
     <Compile Include="Model\Task\InnerDotNet\IdnDashChange.cs" />
     <Compile Include="Model\Options.cs" />
+    <Compile Include="Model\Task\InnerDotNet\IdnRemoveEmptyParagraphBeforeAndAfterStyles.cs" />
     <Compile Include="Model\WordConnection\WordApplicationProxy.cs" />
     <Compile Include="Model\WordConnection\WordDocumentProxy.cs" />
     <Compile Include="Model\WordConnection\WordProxy.cs" />
