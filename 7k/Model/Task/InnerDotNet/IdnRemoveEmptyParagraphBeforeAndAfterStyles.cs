@@ -1,4 +1,5 @@
 ﻿using _7k.Model.Task.Option;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace _7k.Model.Task.InnerDotNet
 {
-    /// <summary>
-    /// _name = "Üres sor törlése stílus előtt/után";
-    /// _toolTip = "A megadott stílusú bekezdések előtt és után törli az üres bekezdéseket.";
-    /// </summary>
     class IdnRemoveEmptyParagraphBeforeAndAfterStyles : AbstractWordCleanerTask
     {
         public override List<AbstractOption> GetDefaultOptions()
@@ -35,48 +32,53 @@ namespace _7k.Model.Task.InnerDotNet
 
         public override void Run()
         {
+            Boolean removeBefore = getBooleanOptionValue(AbstractOption.OptionType.AlsoBefore);
+            Boolean removeAfter = getBooleanOptionValue(AbstractOption.OptionType.ThenAlso);
+            List<String> styles = getStringListOptionValue(AbstractOption.OptionType.Styles);
+
             //bool before = searchCheckOptionValue(CheckOptionType.DEBASBefore);
             //bool after = searchCheckOptionValue(CheckOptionType.DEBASAfter);
             //ObservableCollection<string> styles = searchListOptionValue(ListOptionType.DEBASStyles);
 
-            //int counter = WordProxy.Instance.ActualDocument.Paragraphs.Count;
-            //uint x = 1;
-            //uint changeCounter = 0;
+            int documentSize = WordProxy.Instance.ActualDocument.Paragraphs.Count;
+            uint x = 1;
+            uint changeCounter = 0;
 
-            //Paragraph p = WordProxy.Instance.ActualDocument.Paragraphs[1];
-            //while (letezikeAParagrafus(p))
-            //{
-            //    if (styles.Contains(p.get_Style().NameLocal()))
-            //    {
-            //        if (before)
-            //        {
-            //            Paragraph p_elo = p.Previous();
-            //            while (letezikeAParagrafus(p_elo) && p_elo.Range.Characters.Count == 1)
-            //            {
-            //                p_elo.Range.Delete();
-            //                p_elo = p.Previous();
-            //                changeCounter++;
-            //            }
-            //        }
+            Paragraph p = WordProxy.Instance.ActualDocument.Paragraphs[1];
+            while (p != null)
+            {
+                if (styles.Contains(p.get_Style().NameLocal()))
+                {
+                    if (removeBefore)
+                    {
+                        Paragraph p_elo = p.Previous();
+                        while (p_elo != null && p_elo.Range.Characters.Count == 1)
+                        {
+                            p_elo.Range.Delete();
+                            p_elo = p.Previous();
+                            changeCounter++;
+                        }
+                    }
 
-            //        if (after)
-            //        {
-            //            Paragraph p_kov = p.Next();
-            //            while (letezikeAParagrafus(p_kov) && p_kov.Range.Characters.Count == 1)
-            //            {
-            //                p_kov.Range.Delete();
-            //                p_kov = p.Next();
-            //                changeCounter++;
-            //            }
-            //        }
-            //    }
+                    if (removeAfter)
+                    {
+                        Paragraph p_kov = p.Next();
+                        while (p_kov != null && p_kov.Range.Characters.Count == 1)
+                        {
+                            p_kov.Range.Delete();
+                            p_kov = p.Next();
+                            changeCounter++;
+                        }
+                    }
+                }
 
-            //    MessageWall.Instance.changeCounterWithDispatcher(id, "(" + changeCounter + ")");
-            //    MessageWall.Instance.changePercentWithDispatcher(id, (int)(((double)x / counter) * 100) + "%");
-            //    x += 1;
+                // TODO uzenetkuldes taskbol
+                //MessageWall.Instance.changeCounterWithDispatcher(id, "(" + changeCounter + ")");
+                //MessageWall.Instance.changePercentWithDispatcher(id, (int)(((double)x / documentSize) * 100) + "%");
+                x += 1;
 
-            //    p = p.Next();
-            //}
+                p = p.Next();
+            }
         }
     }
 }

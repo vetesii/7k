@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _7k.Model.Task;
+using _7k.Model.Task.InnerDotNet;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,8 @@ namespace _7k
         public MainWindow()
         {
             InitializeComponent();
+
+            AbstractTask at = new IdnRemoveEmptyParagraphBeforeAndAfterStyles();
         }
     }
 }

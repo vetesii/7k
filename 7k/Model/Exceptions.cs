@@ -6,42 +6,40 @@ using System.Threading.Tasks;
 
 namespace _7k.Model
 {
-    class Exceptions
+    // TODO 5 - Ellenorizni, torolni ha kell
+
+    class StopTaskManagerException : Exception
     {
-        class StopTaskManagerException : Exception
-        {
-            public StopTaskManagerException() : base() { }
+        public StopTaskManagerException() : base() { }
 
-            public StopTaskManagerException(String message) : base(message) { }
-        }
+        public StopTaskManagerException(String message) : base(message) { }
+    }
 
-        class OptionNotFoundException : Exception
-        {
-            public OptionNotFoundException() : base() { }
+    class OptionNotFoundException : Exception
+    {
+        public OptionNotFoundException() : base() { }
 
-            public OptionNotFoundException(String message) : base(message) { }
-        }
+        public OptionNotFoundException(String message) : base(message) { }
+    }
 
-        class InvalidSelectedDocumentException : Exception
-        {
-            public InvalidSelectedDocumentException() : base() { }
-            public InvalidSelectedDocumentException(string message) : base(message) { }
-            public InvalidSelectedDocumentException(string message, System.Exception inner) : base(message, inner) { }
-        }
+    class InvalidSelectedDocumentException : Exception
+    {
+        public InvalidSelectedDocumentException() : base() { }
+        public InvalidSelectedDocumentException(string message) : base(message) { }
+        public InvalidSelectedDocumentException(string message, System.Exception inner) : base(message, inner) { }
+    }
 
-        class ClosedDocumentOrApplicationException : Exception
-        {
-            public ClosedDocumentOrApplicationException() : base() { }
-            public ClosedDocumentOrApplicationException(string message) : base(message) { }
-            public ClosedDocumentOrApplicationException(string message, System.Exception inner) : base(message, inner) { }
-        }
+    class ClosedDocumentOrApplicationException : Exception
+    {
+        public ClosedDocumentOrApplicationException() : base() { }
+        public ClosedDocumentOrApplicationException(string message) : base(message) { }
+        public ClosedDocumentOrApplicationException(string message, System.Exception inner) : base(message, inner) { }
+    }
 
-        class UnidentifiedStyleException : Exception
-        {
-            public UnidentifiedStyleException() : base() { }
-            public UnidentifiedStyleException(string message) : base(message) { }
-            public UnidentifiedStyleException(string message, System.Exception inner) : base(message, inner) { }
-        }
-
+    class UnidentifiedStyleException : Exception
+    {
+        public UnidentifiedStyleException() : base() { }
+        public UnidentifiedStyleException(string message) : base(message) { }
+        public UnidentifiedStyleException(string message, System.Exception inner) : base(message, inner) { }
     }
 }

@@ -2,6 +2,7 @@
 using _7k.Model.Task.Option;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,8 +36,8 @@ namespace _7k.Model.Task
         {
             Tp = this.GetType();
 
-            Name = MultiLanguageTextProxy.getTextOrDefaultText(Tp.Name + ".Name", Tp.Name);
-            Name = MultiLanguageTextProxy.getTextOrDefaultText(Tp.Name + ".Description", Tp.Name);
+            Name = MultiLanguageTextProxy.GetText(Tp.Name + "_Name", Tp.Name);
+            Name = MultiLanguageTextProxy.GetText(Tp.Name + "_Description", Tp.Name);
         }
 
         public abstract List<AbstractOption> GetDefaultOptions();
@@ -72,14 +73,14 @@ namespace _7k.Model.Task
         //}
         //
 
-        protected Boolean searchCheckOptionValue(AbstractOption id)
+        protected Boolean getBooleanOptionValue(AbstractOption.OptionType id)
         {
             foreach (var item in this.options)
                 if (item is BooleanOption && item.Key.Equals(id)) return ((BooleanOption)item).Value;
 
             throw new OptionNotFoundException();
         }
-        protected string searchSimpleOptionValue(AbstractOption id)
+        protected string getStringOptionValue(AbstractOption.OptionType id)
         {
             foreach (var item in this.options)
                 if (item is StringOption && item.Key.Equals(id)) return ((StringOption)item).Value;
@@ -87,7 +88,7 @@ namespace _7k.Model.Task
             throw new OptionNotFoundException();
         }
 
-        protected List<string> searchListOptionValue(AbstractOption id)
+        protected List<string> getStringListOptionValue(AbstractOption.OptionType id)
         {
             foreach (var item in this.options)
                 if (item is StringListOption && item.Key.Equals(id)) return ((StringListOption)item).Value;

@@ -85,7 +85,6 @@
     <Compile Include="Model\Task\InnerDotNet\IdnDashChange.cs" />
     <Compile Include="Model\Options.cs" />
     <Compile Include="Model\Task\InnerDotNet\IdnRemoveEmptyParagraphBeforeAndAfterStyles.cs" />
-    <Compile Include="Model\Task\OptionNotFoundException.cs" />
     <Compile Include="Model\WordConnection\WordApplicationProxy.cs" />
     <Compile Include="Model\WordConnection\WordDocumentProxy.cs" />
     <Compile Include="Model\WordConnection\WordProxy.cs" />
@@ -106,6 +105,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resource\all.resx" />
+    <EmbeddedResource Include="Resource\all.en.resx" />
+    <EmbeddedResource Include="Resource\all.hu.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,9 +117,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resource\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>

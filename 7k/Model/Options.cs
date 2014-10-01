@@ -42,12 +42,11 @@ namespace _7k.Model.Task.Option
             this.ID = Guid.NewGuid();
             this.Key = key;
 
-            Name = MultiLanguageTextProxy.getTextOrDefaultText(AbstractOption.OptionType.AlsoBefore.ToString() + ".Name", AbstractOption.OptionType.AlsoBefore.ToString());
-            Description = MultiLanguageTextProxy.getTextOrDefaultText(AbstractOption.OptionType.AlsoBefore.ToString() + ".Description", AbstractOption.OptionType.AlsoBefore.ToString());
-                
+            Name = MultiLanguageTextProxy.GetText("OptionType_" + key.GetType() + "_Name", key.ToString());
+            Description = MultiLanguageTextProxy.GetText("OptionType_" + key.GetType() + "_Description", key.ToString());                
         }
 
-        // TODO constructor with key and language args
+        // TODO 5 constructor with key and language args
 
         public abstract AbstractOption DeepCopy();
     }

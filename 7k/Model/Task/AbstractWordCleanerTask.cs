@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace _7k.Model.Task
@@ -260,39 +261,33 @@ namespace _7k.Model.Task
             return false;
         }
 
+        protected String CapitalizeRomanNumbers(char[] tomb)
+        {
+            String ret = new string(tomb);
+            String pattern = @"(\s|^)([ivxlcdm]*)([.!?\s])";
+            //String replacePattern = "$0$1$2";
+            try
+            {
+                //ret = Regex.Replace(ret, pattern, replacePattern);
+                ret = Regex.Replace(ret, pattern, m => m.ToString().ToUpper(), RegexOptions.IgnoreCase);
+            }
+            catch (Exception) { }
 
-        //protected String romaiSzamokVisszaallitasaNagyra(char[] tomb)
-        //{
-        //    String ret = new string(tomb);
-        //    String pattern = @"(\s|^)([ivxlcdm]*)([.!?\s])";
-        //    //String replacePattern = "$0$1$2";
-        //    try
-        //    {
-        //        //ret = Regex.Replace(ret, pattern, replacePattern);
-        //        ret = Regex.Replace(ret, pattern, m => m.ToString().ToUpper(), RegexOptions.IgnoreCase);
-        //    }
-        //    catch (Exception) { }
+            return ret;
+        }
 
-        //    return ret;
-        //}
-
-        //protected bool letezikeAParagrafus(Paragraph p)
-        //{
-        //    if (p == null) return false;
-        //    return true;
-        //}
-        //protected void IsStyleExist(string neve)
-        //{
-        //    bool megvane = false;
-        //    foreach (Microsoft.Office.Interop.Word.Style item in WordProxy.Instance.ActualDocument.Styles)
-        //    {
-        //        if (item.NameLocal.Equals(neve))
-        //        {
-        //            megvane = true;
-        //            break;
-        //        }
-        //    }
-        //    if (!megvane) throw new Exception("A dokumentumba nem importáltad be ezt a stílust:\n\"" + neve + "\"");
-        //}
+        protected void IsStyleExist(string neve)
+        {
+            bool megvane = false;
+            foreach (Microsoft.Office.Interop.Word.Style item in WordProxy.Instance.ActualDocument.Styles)
+            {
+                if (item.NameLocal.Equals(neve))
+                {
+                    megvane = true;
+                    break;
+                }
+            }
+            if (!megvane) throw new Exception("A dokumentumba nem importáltad be ezt a stílust:\n\"" + neve + "\"");
+        }
     }
 }
