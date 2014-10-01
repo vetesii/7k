@@ -136,7 +136,10 @@
   <data name="OptionType_AlsoBefore_Name" xml:space="preserve">
     <value>Előtte</value>
   </data>
-  <data name="OptionType_ThenAlso_Name1" xml:space="preserve">
+  <data name="OptionType_Styles_Name" xml:space="preserve">
+    <value>Stílusok</value>
+  </data>
+  <data name="OptionType_ThenAlso_Name" xml:space="preserve">
     <value>Utána</value>
   </data>
 </root>

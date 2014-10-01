@@ -74,9 +74,8 @@
     <Compile Include="Model\Headquarter.cs" />
     <Compile Include="Model\ITaskObserver.cs" />
     <Compile Include="Model\MessageContainer.cs" />
-    <Compile Include="Model\Message\AbstractMessage.cs" />
-    <Compile Include="Model\Message\PlaceholderMessage.cs" />
-    <Compile Include="Model\Message\SimpleMessage.cs" />
+    <Compile Include="Model\Message\Message.cs" />
+    <Compile Include="Model\Message\TaskState.cs" />
     <Compile Include="Model\MultiLanguageTextProxy.cs" />
     <Compile Include="Model\Notifier.cs" />
     <Compile Include="Model\SpecialCharacters.cs" />

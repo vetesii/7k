@@ -36,13 +36,11 @@ namespace _7k.Model.Task.InnerDotNet
             Boolean removeAfter = getBooleanOptionValue(AbstractOption.OptionType.ThenAlso);
             List<String> styles = getStringListOptionValue(AbstractOption.OptionType.Styles);
 
-            //bool before = searchCheckOptionValue(CheckOptionType.DEBASBefore);
-            //bool after = searchCheckOptionValue(CheckOptionType.DEBASAfter);
-            //ObservableCollection<string> styles = searchListOptionValue(ListOptionType.DEBASStyles);
-
             int documentSize = WordProxy.Instance.ActualDocument.Paragraphs.Count;
             uint x = 1;
             uint changeCounter = 0;
+
+            AbstractMessage state = new AbstractMessage();
 
             Paragraph p = WordProxy.Instance.ActualDocument.Paragraphs[1];
             while (p != null)
@@ -75,6 +73,9 @@ namespace _7k.Model.Task.InnerDotNet
                 // TODO uzenetkuldes taskbol
                 //MessageWall.Instance.changeCounterWithDispatcher(id, "(" + changeCounter + ")");
                 //MessageWall.Instance.changePercentWithDispatcher(id, (int)(((double)x / documentSize) * 100) + "%");
+                
+                state.Text = String.Format("{0} ", this.Name);
+
                 x += 1;
 
                 p = p.Next();

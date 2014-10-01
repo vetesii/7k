@@ -7,6 +7,6 @@ namespace _7k.Model
 {
     interface ITaskObserver
     {
-        void sendMessage(vBook.Model.Message.AbstractMessage e);
+        //void sendMessage(vBook.Model.Message.AbstractMessage e);
     }
 }
