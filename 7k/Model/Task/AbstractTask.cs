@@ -57,6 +57,42 @@ namespace _7k.Model.Task
 
             foreach (AbstractOption item in options)
                 task.options.Add(item.DeepCopy());
-        }     
-    }
+        }
+
+        // TODO egyszerusiteni
+        //   1) a viszatérési értéket ref paraméterként kapná? Object-ként?
+
+        //   2)
+        //protected R getOptionValue<T,R>(AbstractOption id) where T : AbstractOption
+        //{
+        //    foreach (AbstractOption item in this.options)
+        //        if (item is T && item.Key.Equals(id)) return ((T)item).Value;
+
+        //    throw new OptionNotFoundException();
+        //}
+        //
+
+        protected Boolean searchCheckOptionValue(AbstractOption id)
+        {
+            foreach (var item in this.options)
+                if (item is BooleanOption && item.Key.Equals(id)) return ((BooleanOption)item).Value;
+
+            throw new OptionNotFoundException();
+        }
+        protected string searchSimpleOptionValue(AbstractOption id)
+        {
+            foreach (var item in this.options)
+                if (item is StringOption && item.Key.Equals(id)) return ((StringOption)item).Value;
+
+            throw new OptionNotFoundException();
+        }
+
+        protected List<string> searchListOptionValue(AbstractOption id)
+        {
+            foreach (var item in this.options)
+                if (item is StringListOption && item.Key.Equals(id)) return ((StringListOption)item).Value;
+
+            throw new OptionNotFoundException();
+        }
+    }        
 }

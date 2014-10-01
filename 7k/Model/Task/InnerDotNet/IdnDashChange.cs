@@ -8,30 +8,16 @@ using _7k.Model.Task.Option;
 
 namespace _7k.Model.Task.InnerDotNet
 {
+    /// <summary>
+    /// _name = "Gondolatjel csere";
+    /// //"1) Em-dash, mínuszjel, kötőjel, nem törhető kötőjel, figure-dash, horizontal bar cseréje en-dash-re\n" +
+    /// "2) !?. és en-dash között ha nincs szóközt tesz be\n" +
+    /// "3) A sima kötöjeleket (igazából minusz jelet) megpróbálja visszatenni a megfelelő helyekre: betű-betű közé, betű en-dash <szóköz>és<szóköz> stb.\n" +
+    /// "4) Paragrafuskezdő gondolatjelek után nemtörhető szóközt rak be, ha sima szóköz van ott, vagy ha az en-sah után betű vagy szám van [a-zA-Z0-9].\n" +
+    /// "5) En-dash és hármaspont közé szóközt tesz, ha nincs. Illetve az en-dash utáni hármaspont utáni szóközt kiveszi, mivel ott biztos nem szabad lennie. ";
+    /// </summary>
     class IdnDashChange : AbstractWordCleanerTask
     {
-        public IdnDashChange ()
-	    {
-            // valahonnan (property) név szedés, nyelvesítve
-            //_name = "Gondolatjel csere";
-            // leírás dettó
-            // _toolTip = 
-            //"1) Em-dash, mínuszjel, kötőjel, nem törhető kötőjel, figure-dash, horizontal bar cseréje en-dash-re\n" +
-            //"2) !?. és en-dash között ha nincs szóközt tesz be\n" +
-            //"3) A sima kötöjeleket (igazából minusz jelet) megpróbálja visszatenni a megfelelő helyekre: betű-betű közé, betű en-dash <szóköz>és<szóköz> stb.\n" +
-            //"4) Paragrafuskezdő gondolatjelek után nemtörhető szóközt rak be, ha sima szóköz van ott, vagy ha az en-sah után betű vagy szám van [a-zA-Z0-9].\n" +
-            //"5) En-dash és hármaspont közé szóközt tesz, ha nincs. Illetve az en-dash utáni hármaspont utáni szóközt kiveszi, mivel ott biztos nem szabad lennie. ";
-            
-
-            // ha nincs név, akkor az osztály neve, hogy azért legyen valami
-
-
-            // ha kell az option-ök ellőállítása, hogy hiba nélkül tudjon futni
-
-            // nem kell azonsoító
-            // _identifier = CleanerTaskIdentifier.ChangeDash;
-	    }
-
         public override List<AbstractOption> GetDefaultOptions()
         {
             return new List<AbstractOption>();

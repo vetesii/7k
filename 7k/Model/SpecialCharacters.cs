@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace _7k.Model
 {
+    // TODO make this file to default, but add resource base overriding 
+
     static class SpecialCharacters
     {
         //TODO sortörés karaktert és a space-t is ide belerakni és azt hasznáni

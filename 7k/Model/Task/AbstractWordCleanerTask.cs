@@ -294,28 +294,5 @@ namespace _7k.Model.Task
         //    }
         //    if (!megvane) throw new Exception("A dokumentumba nem importáltad be ezt a stílust:\n\"" + neve + "\"");
         //}
-
-        //protected Boolean searchCheckOptionValue(CheckOptionType id)
-        //{
-        //    foreach (var item in this.CheckOptions)
-        //        if (item.Identifier.Equals(id)) return item.Value;
-
-        //    throw new OptionNotFoundException();
-        //}
-        //protected string searchSimpleOptionValue(SimpleOptionType id)
-        //{
-        //    foreach (var item in this.SimpleOptions)
-        //        if (item.Identifier.Equals(id)) return item.Value;
-
-        //    throw new OptionNotFoundException();
-        //}
-        //protected ObservableCollection<string> searchListOptionValue(ListOptionType id)
-        //{
-        //    foreach (var item in this.ListOptions)
-        //        if (item.Identifier.Equals(id)) return item.Value;
-
-        //    throw new OptionNotFoundException();
-        //}
-
     }
 }

@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace _7k.Model.Task.Option
 {
-    // TODO: lehet be kellene állítani, hogy az option-ok null-ok ne lehessenek, maximum üresek?
-
     abstract class AbstractOption
     {
         public enum OptionType
@@ -35,7 +33,7 @@ namespace _7k.Model.Task.Option
         }
 
         public Guid ID { get; set; }
-        public OptionType Key { get; set; }
+        public OptionType Key { get; private set; }
         public String Name { get; set; }
         public String Description { get; set; }
 
@@ -48,6 +46,8 @@ namespace _7k.Model.Task.Option
             Description = MultiLanguageTextProxy.getTextOrDefaultText(AbstractOption.OptionType.AlsoBefore.ToString() + ".Description", AbstractOption.OptionType.AlsoBefore.ToString());
                 
         }
+
+        // TODO constructor with key and language args
 
         public abstract AbstractOption DeepCopy();
     }
@@ -68,12 +68,7 @@ namespace _7k.Model.Task.Option
     {
         public String Value { get; set; }
 
-        public StringOption(OptionType key)
-            : base(key)
-        {
-            //this.Name = MultiLanguageTextProxy.getTextOrDefaultText(Type.ToString(), AbstractOption.MissingLanguageText);
-            //this.Description = MultiLanguageTextProxy.getTextOrDefaultText(Type.ToString(), AbstractOption.MissingLanguageText);
-        }
+        public StringOption(OptionType key) : base(key) { }
 
         public override AbstractOption DeepCopy()
         {
@@ -82,17 +77,7 @@ namespace _7k.Model.Task.Option
     }
 
     class StringListOption : AbstractOption
-    {
-        public enum StringListOptionType
-        {
-            StylesForNoIndentStyle, StyleForDropcap, TitleStyles,
-            DEBASStyles,
-            AllStyle, AllPoemStyle, LineBreakDeleteExcept,
-            SeparatorTexts,
-            IEBASInsertBefore, IEBASInsertAfter, IEBSDeleteBeforeAfter
-        }
-        
-        public StringListOptionType Type { get; private set; }
+    {        
         public List<String> Value { get; set; }
 
         public StringListOption(OptionType key) : base(key) { }

@@ -7,27 +7,12 @@ using System.Threading.Tasks;
 
 namespace _7k.Model.Task.InnerDotNet
 {
+    /// <summary>
+    /// _name = "Üres sor törlése stílus előtt/után";
+    /// _toolTip = "A megadott stílusú bekezdések előtt és után törli az üres bekezdéseket.";
+    /// </summary>
     class IdnRemoveEmptyParagraphBeforeAndAfterStyles : AbstractWordCleanerTask
     {
-        //public TaskOfDeleteEmptyBeforeAfterStyles() 
-        //{
-        //    GeneralInitialization();
-        //    _name = "Üres sor törlése stílus előtt/után";
-        //    _toolTip = "A megadott stílusú bekezdések előtt és után törli az üres bekezdéseket.";
-        //    _identifier = CleanerTaskIdentifier.DeleteEmptyBeforeAfterStyles;
-        //    ValidateAndCorrectOptions();
-        //}
-
-        //public override List<Object> getRequiredOptionList()
-        //{
-        //    List<Object> list = new List<Object>();
-        //    list.Add(CheckOptionType.DEBASBefore);
-        //    list.Add(CheckOptionType.DEBASAfter);
-        //    list.Add(ListOptionType.DEBASStyles);
-
-        //    return list;
-        //}
-
         public override List<AbstractOption> GetDefaultOptions()
         {
             List<AbstractOption> retList = new List<AbstractOption>();
@@ -35,19 +20,15 @@ namespace _7k.Model.Task.InnerDotNet
             BooleanOption bo = new BooleanOption(AbstractOption.OptionType.AlsoBefore) { Value = true };
             retList.Add(bo);
 
-            //name = String.Empty;
-            //description = String.Empty;            
-            //bo = new BooleanOption() { Key = AbstractOption.OptionType.ThenAlso, Name = name, Description = description, Value = true };
-            //retList.Add(bo);
+            bo = new BooleanOption(AbstractOption.OptionType.ThenAlso) { Value = true };
+            retList.Add(bo);
 
-            //name = String.Empty;
-            //description = String.Empty;
-            //List<String> value = new List<string>() 
-            //{ 
-            //    "cim0", "cim1", "cim2", "cim2eo", "cim3", "cim3eo", "cim4", "cim4eo", "felsorolas", "jegyzet", "cim", "szerzo" 
-            //};
-            //StringListOption sto = new StringListOption() { Key = AbstractOption.OptionType.Styles, Name = name, Description = description, Value = value };
-            //retList.Add(sto);
+            List<String> value = new List<string>() 
+            { 
+                "cim0", "cim1", "cim2", "cim2eo", "cim3", "cim3eo", "cim4", "cim4eo", "felsorolas", "jegyzet", "cim", "szerzo" 
+            };
+            StringListOption sto = new StringListOption(AbstractOption.OptionType.Styles) { Value = value };
+            retList.Add(sto);
 
             return retList;
         }
