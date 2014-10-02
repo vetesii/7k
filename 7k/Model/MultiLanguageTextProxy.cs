@@ -25,6 +25,7 @@ namespace _7k.Model
             try
             {
                 String ret = res_man.GetString(key, cul_info);
+                //Debug.WriteLine(key);
                 if (ret == null) throw new KeyNotFoundException();
                 return ret;
             }

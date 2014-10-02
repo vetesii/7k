@@ -42,8 +42,8 @@ namespace _7k.Model.Task.Option
             this.ID = Guid.NewGuid();
             this.Key = key;
 
-            Name = MultiLanguageTextProxy.GetText("OptionType_" + key.GetType() + "_Name", key.ToString());
-            Description = MultiLanguageTextProxy.GetText("OptionType_" + key.GetType() + "_Description", key.ToString());                
+            Name = MultiLanguageTextProxy.GetText("OptionType_" + key.ToString() + "_Name", key.ToString());
+            Description = MultiLanguageTextProxy.GetText("OptionType_" + key.ToString() + "_Description", key.ToString());                
         }
 
         // TODO 5 constructor with key and language args
