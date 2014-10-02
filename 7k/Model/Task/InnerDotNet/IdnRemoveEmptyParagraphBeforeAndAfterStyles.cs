@@ -30,7 +30,7 @@ namespace _7k.Model.Task.InnerDotNet
             return retList;
         }
 
-        public override void Run()
+        protected override void EmbemedStart()
         {
             Boolean removeBefore = getBooleanOptionValue(AbstractOption.OptionType.AlsoBefore);
             Boolean removeAfter = getBooleanOptionValue(AbstractOption.OptionType.ThenAlso);

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace _7k.Model.Task
@@ -121,9 +122,7 @@ namespace _7k.Model.Task
         {
             return new List<AbstractOption>();
         }
-
-        public abstract void Run();
-
+                
         public void duplicate()
         {
             AbstractTask task = (AbstractTask)Activator.CreateInstance(this.GetType());
@@ -195,64 +194,59 @@ namespace _7k.Model.Task
             }
         }
 
-        //abstract protected void EmbemedStart(Guid id);
-        //public void Start(Guid id)
-        //{
-        //    if (id == null) id = Guid.NewGuid();
-
-        //    MessageWall.Instance.sendMessageToWallWithDispatcher(id, this.Name, MessageWall.WorkingBrush, MessageState.Work);
-        //    try
-        //    {
-        //        this.State = CleanerTaskState.Work;
-        //        EmbemedStart(id);
-        //        this.AutoStartWithDispatcher = false;
-        //        MessageWall.Instance.changeColorAndNullTaskStateAndPercentWithDispatcher(id, MessageWall.FinishBrush);
-        //        this.State = CleanerTaskState.Finished;
-        //        TaskManager.Instance.deleteTaskWithDispatcherSyncron(this);
-        //    }
-        //    catch (StopTaskManagerException)
-        //    {
-        //        terminateTask(id, "(A folyamat a felhasználó által megállítva)");
-        //    }
-        //    catch (NullReferenceException)
-        //    {
-        //        terminateTask(id, "(Valószínűleg nincs kiválasztva word dokumentum)");
-        //    }
-        //    catch (InvalidSelectedDocumentException)
-        //    {
-        //        terminateTask(id, "(Válassz ki egy Word dokumentumot, amin dolgozol)");
-        //    }
-        //    catch (ClosedDocumentOrApplicationException)
-        //    {
-        //        terminateTask(id, "(A kiválasztott dokumentum vagy maga a Word bezárult)");
-        //    }
-        //    catch (InvalidCastException)
-        //    {
-        //        terminateTask(id, "(A kiválasztott dokumentum vagy maga a Word bezárult)");
-        //    }
-        //    catch (UnidentifiedStyleException e)
-        //    {
-        //        terminateTask(id, "(A dokumentumból hiányzik a " + e.Message + " stílus.)");
-        //    }
-        //    catch (ThreadAbortException)
-        //    {
-        //        terminateTask(id, "(Megszakítva)");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        terminateTask(id, "(Ismeretlen hiba történt: " + e.Message + ")");
-        //    }
-        //}
-        //void terminateTask(Guid id, string message)
-        //{
-        //    if (this.State.Equals(CleanerTaskState.Work))
-        //    {
-        //        this.StateWithDispatcher = CleanerTaskState.Error;
-        //        this.AutoStartWithDispatcher = false;
-        //    }
-
-        //    MessageWall.Instance.changeTaskStateWithDispatcher(id, message);
-        //    MessageWall.Instance.changeColorWithDispatcher(id, MessageWall.ErrorBrush);
-        //}
+        abstract protected void EmbemedStart();
+        
+        // TODO 2 - Felülvizsgálni, kiegészíteni a hibákat
+        public void Run()
+        {        
+            try
+            {
+                this.State = TaskState.Running;
+                EmbemedStart();
+                this.AutoStart = false;
+                this.State = TaskState.Completed;
+                // TODO - 2 - Jo kerdes ez a torles itt, valoszineleg teljesen el kellene vetni a torles dolgot
+                // TaskManager.Instance.deleteTaskWithDispatcherSyncron(this);
+            }
+            // TODO 2 - hibauzenetek nyelvesitese
+            catch (StopTaskManagerException)
+            {
+                terminateTask("(A folyamat a felhasználó által megállítva)");
+            }
+            catch (NullReferenceException)
+            {
+                terminateTask("(Valószínűleg nincs kiválasztva word dokumentum)");
+            }
+            catch (InvalidSelectedDocumentException)
+            {
+                terminateTask("(Válassz ki egy Word dokumentumot, amin dolgozol)");
+            }
+            catch (ClosedDocumentOrApplicationException)
+            {
+                terminateTask("(A kiválasztott dokumentum vagy maga a Word bezárult)");
+            }
+            catch (InvalidCastException)
+            {
+                terminateTask("(A kiválasztott dokumentum vagy maga a Word bezárult)");
+            }
+            catch (UnidentifiedStyleException e)
+            {
+                terminateTask("(A dokumentumból hiányzik a " + e.Message + " stílus.)");
+            }
+            catch (ThreadAbortException)
+            {
+                terminateTask("(Megszakítva)");
+            }
+            catch (Exception e)
+            {
+                terminateTask("(Ismeretlen hiba történt: " + e.Message + ")");
+            }
+        }
+        protected void terminateTask(string message)
+        {
+            Error = message;
+            this.AutoStart = false;
+            this.State = TaskState.Error;
+        }
     }        
 }

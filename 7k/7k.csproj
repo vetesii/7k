@@ -75,6 +75,7 @@
     <Compile Include="Model\MultiLanguageTextProxy.cs" />
     <Compile Include="Model\Notifier.cs" />
     <Compile Include="Model\SpecialCharacters.cs" />
+    <Compile Include="Model\Scheduler.cs" />
     <Compile Include="Model\Task\AbstractTask.cs" />
     <Compile Include="Model\Task\AbstractWordCleanerTask.cs" />
     <Compile Include="Model\Task\InnerDotNet\IdnDashChange.cs" />

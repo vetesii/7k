@@ -19,7 +19,7 @@ namespace _7k.Model.Task.InnerDotNet
         ///  - speciális esetben (2004-2006-os költségvetés..., 1-1-es döntetlennel) em-dash kellene majd javításkor
         ///      kézileg beszúrni :)
         /// </summary>
-        public override void Run()
+        protected override void EmbemedStart()
         {
             // replace to en_dash
             wordFindAndReplace(SpecialCharacters.minus, SpecialCharacters.enDash);
