@@ -72,10 +72,6 @@
     <Compile Include="Model\Context\WordContext.cs" />
     <Compile Include="Model\Exceptions.cs" />
     <Compile Include="Model\Headquarter.cs" />
-    <Compile Include="Model\ITaskObserver.cs" />
-    <Compile Include="Model\MessageContainer.cs" />
-    <Compile Include="Model\Message\Message.cs" />
-    <Compile Include="Model\Message\TaskState.cs" />
     <Compile Include="Model\MultiLanguageTextProxy.cs" />
     <Compile Include="Model\Notifier.cs" />
     <Compile Include="Model\SpecialCharacters.cs" />

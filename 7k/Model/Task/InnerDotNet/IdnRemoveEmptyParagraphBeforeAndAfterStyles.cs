@@ -37,10 +37,8 @@ namespace _7k.Model.Task.InnerDotNet
             List<String> styles = getStringListOptionValue(AbstractOption.OptionType.Styles);
 
             int documentSize = WordProxy.Instance.ActualDocument.Paragraphs.Count;
-            uint x = 1;
-            uint changeCounter = 0;
-
-            AbstractMessage state = new AbstractMessage();
+            uint loopCount = 1;
+            uint counter = 0;
 
             Paragraph p = WordProxy.Instance.ActualDocument.Paragraphs[1];
             while (p != null)
@@ -54,7 +52,7 @@ namespace _7k.Model.Task.InnerDotNet
                         {
                             p_elo.Range.Delete();
                             p_elo = p.Previous();
-                            changeCounter++;
+                            counter++;
                         }
                     }
 
@@ -65,21 +63,19 @@ namespace _7k.Model.Task.InnerDotNet
                         {
                             p_kov.Range.Delete();
                             p_kov = p.Next();
-                            changeCounter++;
+                            counter++;
                         }
                     }
                 }
 
-                // TODO uzenetkuldes taskbol
-                //MessageWall.Instance.changeCounterWithDispatcher(id, "(" + changeCounter + ")");
-                //MessageWall.Instance.changePercentWithDispatcher(id, (int)(((double)x / documentSize) * 100) + "%");
-                
-                state.Text = String.Format("{0} ", this.Name);
+                this.Percent = (double)loopCount / documentSize;
+                this.Counter = counter.ToString();
 
-                x += 1;
-
+                loopCount += 1;
                 p = p.Next();
             }
+
+            Percent = 1;
         }
     }
 }

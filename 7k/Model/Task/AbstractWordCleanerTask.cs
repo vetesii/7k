@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace _7k.Model.Task
 {
+    // TODO 3 vannak meg kerdeses pontok
     abstract class AbstractWordCleanerTask : AbstractTask
     {
         // delegate void workInUIThread();
@@ -278,16 +279,17 @@ namespace _7k.Model.Task
 
         protected void IsStyleExist(string neve)
         {
-            bool megvane = false;
+            bool exist = false;
             foreach (Microsoft.Office.Interop.Word.Style item in WordProxy.Instance.ActualDocument.Styles)
             {
                 if (item.NameLocal.Equals(neve))
                 {
-                    megvane = true;
+                    exist = true;
                     break;
                 }
             }
-            if (!megvane) throw new Exception("A dokumentumba nem importáltad be ezt a stílust:\n\"" + neve + "\"");
+            // TODO 3 make new exception type
+            if (!exist) throw new Exception(String.Format(MultiLanguageTextProxy.GetText("Error_Not_Imported_Style"), neve));
         }
     }
 }

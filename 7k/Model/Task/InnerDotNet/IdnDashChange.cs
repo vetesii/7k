@@ -10,11 +10,6 @@ namespace _7k.Model.Task.InnerDotNet
 {
     class IdnDashChange : AbstractWordCleanerTask
     {
-        public override List<AbstractOption> GetDefaultOptions()
-        {
-            return new List<AbstractOption>();
-        }
-
         /// <summary>
         /// Mit mire kellene használni:
         ///  - párbeszédhez: en-dash

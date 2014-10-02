@@ -14,16 +14,6 @@ namespace _7k.Model.Task
         public Type Tp { get; private set; }
 
         public Guid ID { get; set; }
-        protected List<ITaskObserver> observers = new List<ITaskObserver>();
-
-        public void addObserver(ITaskObserver e)
-        {
-            observers.Add(e);
-        }
-        public void removeObserver(ITaskObserver e)
-        {
-            observers.Remove(e);
-        }
 
         public Boolean AutoStartState { get; set; }
 
@@ -32,15 +22,30 @@ namespace _7k.Model.Task
 
         public List<AbstractOption> options = new List<AbstractOption>();
 
+        public Double Percent { get; set; }
+        public String PercentText
+        {
+            get { return Percent * 100 + "%"; }
+        }
+        public String Counter { get; set; }
+        public String Error { get; set; }
+
         public AbstractTask()
         {
             Tp = this.GetType();
 
             Name = MultiLanguageTextProxy.GetText(Tp.Name + "_Name", Tp.Name);
             Name = MultiLanguageTextProxy.GetText(Tp.Name + "_Description", Tp.Name);
+
+            Percent = -1;
+            Counter = String.Empty;
+            Error = String.Empty;
         }
 
-        public abstract List<AbstractOption> GetDefaultOptions();
+        public virtual List<AbstractOption> GetDefaultOptions() 
+        {
+            return new List<AbstractOption>();
+        }
 
         public abstract void Run();
 
@@ -60,7 +65,7 @@ namespace _7k.Model.Task
                 task.options.Add(item.DeepCopy());
         }
 
-        // TODO egyszerusiteni
+        // TODO 5 egyszerusiteni
         //   1) a viszatérési értéket ref paraméterként kapná? Object-ként?
 
         //   2)
