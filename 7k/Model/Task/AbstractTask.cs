@@ -1,5 +1,5 @@
-﻿using _7k.Model;
-using _7k.Model.Task.Option;
+﻿using _7k.Model.ContextElement;
+using _7k.Model.ContextElement.Task.Option;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace _7k.Model.Task
+namespace _7k.Model.ContextElement.Task
 {
     // TODO 3 vannak meg kerdeses pontok a Task-okkal kapcsolatban
     abstract class AbstractTask : Notifier

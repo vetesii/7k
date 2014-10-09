@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _7k.Model.Task;
-using _7k.Model.Task.Option;
+using _7k.Model.ContextElement.Task;
+using _7k.Model.ContextElement.Task.Option;
 
-namespace _7k.Model.Task.InnerDotNet
+namespace _7k.Model.ContextElement.Task.InnerDotNet
 {
     class IdnDashChange : AbstractWordCleanerTask
     {

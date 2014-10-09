@@ -7,7 +7,7 @@ using Microsoft.Office.Interop.Word;
 using Word = Microsoft.Office.Interop.Word;
 using System.Runtime.InteropServices;
 
-namespace _7k.Model
+namespace _7k.Model.ContextElement
 {
     public class WordProxy : Notifier
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _7k.Model
+namespace _7k.Model.ContextElement
 {
     // TODO 5 - Ellenorizni, torolni ha kell
 

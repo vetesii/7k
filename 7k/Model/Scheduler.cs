@@ -1,4 +1,4 @@
-﻿using _7k.Model.Task;
+﻿using _7k.Model.ContextElement.Task;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
-namespace _7k.Model
+namespace _7k.Model.ContextElement
 {
     class Scheduler
     {
@@ -18,48 +18,45 @@ namespace _7k.Model
         public static Scheduler Instance { get; protected set; }
         static Scheduler()
         {
-            Instance = new Scheduler();            
+            Instance = new Scheduler();
         }
 
         // TODO 1 külön szálon futtatni
         public void Start()
         {
+            Unity next;
+
             try
             {
                 while (true)
                 {
-                    AbstractTask tsk;
-
-                    lock (schedulerLock)
+                    lock (CentralContainer.RunningTaskLock)
                     {
-                        tsk = CentralStorage.GetNextTask();
-                    }
+                        next = CentralContainer.RunningTask;
 
-                    // TODO 1 megnezni
-                    //if (_tasks.Count() > 0 && _tasks[0].State != CleanerTaskState.Work && _tasks[0].AutoStart == true)
-
-                    // TODO 2 Kell ide is lock, az egész köré? Vagy két lock kell?
-                    // Lehet hogy a tsk-t kellene lock-olni?
-                    if(tsk != null)
-                    {
-                        tsk.Run();
-                    }
-                    else
-                    {
-                        lock (schedulerLock)
+                        if (next != null)
                         {
-                            // TODO 1 megnezni
-                            //state = TaskManagerState.Stand;
-                            Monitor.Wait(schedulerLock);
-                            //state = TaskManagerState.Work;
+                            next.Task.Run();
+                        }
+                        else
+                        {
+                            Monitor.Wait(CentralContainer.RunningTaskLock);
                         }
                     }
+
+                    // TODO 1 - probably i have to use dispatcher to this call
+                    CentralContainer.PrepareNextRunnningTask();
                 }
             }
             catch
             {
-                // TODO 2 restart hivas
+                restart();
             }
+        }
+
+        private void restart()
+        {
+            // TODO 2 restart scheduler
         }
     }
 
@@ -131,7 +128,7 @@ namespace _7k.Model
 
     //        try { WorkerThread.Abort(); }
     //        catch (Exception) { }
-            
+
     //        if (_tasks.Count() != 0)
     //        {
     //            _tasks[0].AutoStart = false;
@@ -219,7 +216,7 @@ namespace _7k.Model
     //        startTaskManager();
     //    }
 
-        
+
 
 
 

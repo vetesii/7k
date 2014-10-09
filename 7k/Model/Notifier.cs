@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace _7k.Model
+namespace _7k.Model.ContextElement
 {
     [Serializable]
     public abstract class Notifier : INotifyPropertyChanged

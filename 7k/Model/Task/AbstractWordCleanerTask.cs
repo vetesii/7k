@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace _7k.Model.Task
+namespace _7k.Model.ContextElement.Task
 {
     abstract class AbstractWordCleanerTask : AbstractTask
     {

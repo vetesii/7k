@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _7k.Model.Context
+namespace _7k.Model.ContextElement.ContextElement
 {
-    class AbstractContext
+    class AbstractContextElement
     {
 
     }

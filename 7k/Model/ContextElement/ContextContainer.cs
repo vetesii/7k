@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _7k.Model.Task;
+using _7k.Model.ContextElement.Task;
 
-namespace _7k.Model.Context
+namespace _7k.Model.ContextElement.ContextElement
 {
     class ContextToManyTasksBound
     {
-        public AbstractContext Context { get; set; }
+        public AbstractContextElement Context { get; set; }
         public List<AbstractTask> Task { get; set; }
     }
 
@@ -20,9 +20,9 @@ namespace _7k.Model.Context
     {
         static List<ContextToManyTasksBound> BoundList { get; set; }
 
-        public static AbstractContext BaseContext { get; set; }
+        public static AbstractContextElement BaseContext { get; set; }
 
-        public static void addBound(AbstractContext cont, List<AbstractTask> taskList)
+        public static void addBound(AbstractContextElement cont, List<AbstractTask> taskList)
         {
             if (cont == null || taskList == null) return;
 
@@ -63,7 +63,7 @@ namespace _7k.Model.Context
             //if(ex.Task.Count) 
         }
 
-        public static void addBound(AbstractContext cont, AbstractTask task)
+        public static void addBound(AbstractContextElement cont, AbstractTask task)
         {
             addBound(cont, new List<AbstractTask>() { task });
         }

@@ -1,5 +1,5 @@
-﻿using _7k.Model.Task;
-using _7k.Model.Task.InnerDotNet;
+﻿using _7k.Model.ContextElement.Task;
+using _7k.Model.ContextElement.Task.InnerDotNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;

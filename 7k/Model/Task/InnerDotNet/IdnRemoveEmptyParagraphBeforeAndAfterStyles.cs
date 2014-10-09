@@ -1,4 +1,4 @@
-﻿using _7k.Model.Task.Option;
+﻿using _7k.Model.ContextElement.Task.Option;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _7k.Model.Task.InnerDotNet
+namespace _7k.Model.ContextElement.Task.InnerDotNet
 {
     class IdnRemoveEmptyParagraphBeforeAndAfterStyles : AbstractWordCleanerTask
     {

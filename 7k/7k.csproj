@@ -67,11 +67,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Context\AbstractContext.cs" />
-    <Compile Include="Model\Context\ContextContainer.cs" />
-    <Compile Include="Model\Context\WordContext.cs" />
+    <Compile Include="Model\ContextElement\AbstractContextElement.cs" />
+    <Compile Include="Model\ContextElement\ContextContainer.cs" />
+    <Compile Include="Model\ContextElement\WordContext.cs" />
+    <Compile Include="Model\ContextElement\ContextState.cs" />
     <Compile Include="Model\Exceptions.cs" />
-    <Compile Include="Model\Headquarter.cs" />
+    <Compile Include="Model\CentralContainer.cs" />
     <Compile Include="Model\MultiLanguageTextProxy.cs" />
     <Compile Include="Model\Notifier.cs" />
     <Compile Include="Model\SpecialCharacters.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Model\Task\InnerDotNet\IdnDashChange.cs" />
     <Compile Include="Model\Options.cs" />
     <Compile Include="Model\Task\InnerDotNet\IdnRemoveEmptyParagraphBeforeAndAfterStyles.cs" />
+    <Compile Include="Model\Unity.cs" />
     <Compile Include="Model\WordConnection\WordApplicationProxy.cs" />
     <Compile Include="Model\WordConnection\WordDocumentProxy.cs" />
     <Compile Include="Model\WordConnection\WordProxy.cs" />

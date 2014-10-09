@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _7k.Model.Task.Option
+namespace _7k.Model.ContextElement.Task.Option
 {
     abstract class AbstractOption
     {
