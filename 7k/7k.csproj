@@ -71,6 +71,13 @@
     <Compile Include="Model\ContextElement\ContextContainer.cs" />
     <Compile Include="Model\ContextElement\WordContext.cs" />
     <Compile Include="Model\ContextElement\ContextState.cs" />
+    <Compile Include="Model\Context\AbstractContext.cs" />
+    <Compile Include="Model\Context\FileSystemContext.cs" />
+    <Compile Include="Model\Context\BooleanContext.cs" />
+    <Compile Include="Model\Context\RegexFileSystemContext.cs" />
+    <Compile Include="Model\Context\StringContext.cs" />
+    <Compile Include="Model\Context\StringListContext.cs" />
+    <Compile Include="Model\Context\WordDocumentContext.cs" />
     <Compile Include="Model\Exceptions.cs" />
     <Compile Include="Model\CentralContainer.cs" />
     <Compile Include="Model\MultiLanguageTextProxy.cs" />
