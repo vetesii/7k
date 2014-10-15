@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Word;
+﻿using _7k.Model.Context;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,67 @@ namespace _7k.Model.ContextElement.Task
 
         static public Boolean _selectRangeInWord = true;
 
+        protected List<AbstractContext> wordContextList;
+
         public AbstractWordCleanerTask()
         {
-            
+            wordContextList = new List<AbstractContext>();
         }
+
+        public override List<AbstractContext> GetDefaultOptions()
+        {
+            List<AbstractContext> lst = base.GetDefaultOptions();
+            if(lst == null) lst = new List<AbstractContext>();
+            lst.Add(new BooleanContext(BooleanContext.BCType.SelectRangeInWord) { Value = false });
+
+            return lst;
+        }
+
+        protected void sortWordContext()
+        {
+            wordContextList = new List<AbstractContext>();
+
+            if (extContextList != null)
+                foreach (AbstractContext item in extContextList)
+                    if (item is WordDocumentContext) wordContextList.Add(item);
+
+        }
+
+        protected Boolean testConnection(Document doc)
+        {
+            if (doc == null) return false;
+            try
+            {
+                Paragraph test = doc.Paragraphs[1];
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
+        protected Boolean testConnection(List<Document> docList)
+        {
+            foreach (Document item in docList)
+                if (false == testConnection(item)) return false;
+
+            return true;
+        }
+
+        protected Boolean testConnection(AbstractContext cont)
+        {
+
+
+            return true;
+        }
+        protected Boolean testConnection(List<AbstractContext> cont)
+        {
+
+
+            return true;
+        }
+
 
         protected bool wordFindAndReplace(object mit, object mire)
         {
@@ -56,12 +114,12 @@ namespace _7k.Model.ContextElement.Task
                  ref oMissing, ref oMissing, ref oMissing, ref oMissing
                  );
         }
-        
+
         //protected bool betuVagySzamVagyHarmasponte(char mi)
         protected bool characterOrNumberOrTriplePoint(char ch)
         {
             if (('a' <= ch && ch <= 'z') || ('A' <= ch && ch <= 'Z') || ('0' <= ch && ch <= '9')) return true;
-            
+
             if (ch == '\u2026') return true;
 
             return false;

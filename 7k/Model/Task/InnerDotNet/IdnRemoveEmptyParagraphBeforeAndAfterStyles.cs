@@ -1,4 +1,5 @@
-﻿using _7k.Model.ContextElement.Task.Option;
+﻿using _7k.Model.Context;
+using _7k.Model.ContextElement.Task.Option;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
@@ -10,31 +11,32 @@ namespace _7k.Model.ContextElement.Task.InnerDotNet
 {
     class IdnRemoveEmptyParagraphBeforeAndAfterStyles : AbstractWordCleanerTask
     {
-        public override List<AbstractOption> GetDefaultOptions()
+        public override List<AbstractContext> GetDefaultOptions()
         {
-            List<AbstractOption> retList = new List<AbstractOption>();
+            List<AbstractContext> lst = base.GetDefaultOptions();
+            if (lst == null) lst = new List<AbstractContext>();
 
-            BooleanOption bo = new BooleanOption(AbstractOption.OptionType.AlsoBefore) { Value = true };
-            retList.Add(bo);
+            BooleanContext bo = new BooleanContext(BooleanContext.BCType.AlsoBefore) { Value = true };
+            lst.Add(bo);
 
-            bo = new BooleanOption(AbstractOption.OptionType.ThenAlso) { Value = true };
-            retList.Add(bo);
+            bo = new BooleanContext(BooleanContext.BCType.ThenAlso) { Value = true };
+            lst.Add(bo);
 
             List<String> value = new List<string>() 
             { 
                 "cim0", "cim1", "cim2", "cim2eo", "cim3", "cim3eo", "cim4", "cim4eo", "felsorolas", "jegyzet", "cim", "szerzo" 
             };
-            StringListOption sto = new StringListOption(AbstractOption.OptionType.Styles) { Value = value };
-            retList.Add(sto);
+            StringListContext sto = new StringListContext(StringListContext.SLType.Styles) { Value = value };
+            lst.Add(sto);
 
-            return retList;
+            return lst;
         }
 
         protected override void EmbemedStart()
         {
-            Boolean removeBefore = getBooleanOptionValue(AbstractOption.OptionType.AlsoBefore);
-            Boolean removeAfter = getBooleanOptionValue(AbstractOption.OptionType.ThenAlso);
-            List<String> styles = getStringListOptionValue(AbstractOption.OptionType.Styles);
+            Boolean removeBefore = getBooleanContextValue(BooleanContext.BCType.AlsoBefore);
+            Boolean removeAfter = getBooleanContextValue(BooleanContext.BCType.ThenAlso);
+            List<String> styles = getStringListOptionValue(StringListContext.SLType.Styles);
 
             int documentSize = WordProxy.Instance.ActualDocument.Paragraphs.Count;
             uint loopCount = 1;

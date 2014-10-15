@@ -1,4 +1,5 @@
-﻿using _7k.Model.ContextElement.ContextElement;
+﻿using _7k.Model.Context;
+using _7k.Model.ContextElement.ContextElement;
 using _7k.Model.ContextElement.Task;
 using _7k.Model.ContextElement.Task.InnerDotNet;
 using System;
@@ -108,6 +109,15 @@ namespace _7k.Model.ContextElement
         public static void RemoveTaskFromNormalList(Unity uni)
         {
             if (uni != null) NormalTaskList.Remove(uni);
+        }
+
+        public static List<AbstractContext> GetAbstractContextList(AbstractTask task)
+        {
+            List<AbstractContext> lst = new List<AbstractContext>();
+            
+
+
+            return lst;
         }
     }
 }

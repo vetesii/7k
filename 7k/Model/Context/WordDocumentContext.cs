@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace _7k.Model.Context
 {
-    class WordDocumentContext
+    class WordDocumentContext : AbstractContext
     {
         public Document Doc { get; set; }
 
         public FileInfo FullName { get; set; }
-
-        public Boolean ReopenIfDisconnect { get; set; }
 
         public WordDocumentContext(Document doc)
         {
@@ -24,12 +22,23 @@ namespace _7k.Model.Context
 
             FullName = new FileInfo(doc.FullName);
         }
+        public override AbstractContext DeepCopy()
+        {
+            throw new NotImplementedException();
+        }
 
         public Boolean ReConnect()
         {
             // TODO 1
 
             return false;
+        }
+
+        public override Boolean EqualContexts(object obj)
+        {
+            if (obj.GetType() != this.GetType()) return false;
+
+            return true;
         }
     }
 }

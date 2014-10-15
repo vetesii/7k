@@ -10,6 +10,7 @@ namespace _7k.Model.Context
     {
         public enum BCType
         {
+            SelectRangeInWord,
             CleanLineBreakToo, DeleteManualCharacterFormatting, DeleteManualParagraphFormatting,
             MFSItalic, MFSBold, MFSSuper, MFSSub, MFSSmallCaps, MFSAllCaps,
             OnlyInExternalStyle, OnlyAfterTitle, NotFormatParagraphWithDashStart,
@@ -32,5 +33,14 @@ namespace _7k.Model.Context
         {
             return new BooleanContext(this.ContextType) { Name = this.Name, Description = this.Description, Value = this.Value };
         }
+
+        public override Boolean EqualContexts(object obj)
+        {
+            if ( obj.GetType() != this.GetType() ) return false;
+            if ( (obj as BooleanContext).ContextType.Equals(this.ContextType) ) return false;
+
+            return true;
+        }
+       
     }
 }

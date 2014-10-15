@@ -1,4 +1,5 @@
-﻿using _7k.Model.ContextElement;
+﻿using _7k.Model.Context;
+using _7k.Model.ContextElement;
 using _7k.Model.ContextElement.Task.Option;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace _7k.Model.ContextElement.Task
         public String Name { get; set; }
         public String Decription { get; set; }
 
-        public List<AbstractOption> Options { get; set; }
+        public List<AbstractContext> Options { get; set; }
 
         public Double Percent { get; set; }
         public String PercentText
@@ -103,10 +104,20 @@ namespace _7k.Model.ContextElement.Task
             Counter = String.Empty;
             Error = String.Empty;
 
-            Options = new List<AbstractOption>();
+            Options = new List<AbstractContext>();
             ValidateAndAmendOptions();
 
             State = TaskState.Initialized;
+
+            extContextList = new List<AbstractContext>();
+        }
+
+        protected List<AbstractContext> extContextList;
+
+        protected void getContextsForRun()
+        {
+            extContextList = CentralContainer.GetAbstractContextList(this);
+            if (extContextList == null) extContextList = new List<AbstractContext>();
         }
 
         // TODO 2 - Deserializaton?
@@ -118,9 +129,9 @@ namespace _7k.Model.ContextElement.Task
         //    // optional fields
         //}
 
-        public virtual List<AbstractOption> GetDefaultOptions() 
+        public virtual List<AbstractContext> GetDefaultOptions() 
         {
-            return new List<AbstractOption>();
+            return new List<AbstractContext>();
         }
                 
         public void duplicate()
@@ -135,7 +146,7 @@ namespace _7k.Model.ContextElement.Task
 
             task.ID = Guid.NewGuid();
 
-            foreach (AbstractOption item in Options)
+            foreach (AbstractContext item in Options)
                 task.Options.Add(item.DeepCopy());
         }
 
@@ -152,25 +163,24 @@ namespace _7k.Model.ContextElement.Task
         //}
         //
 
-        protected Boolean getBooleanOptionValue(AbstractOption.OptionType id)
+        protected Boolean getBooleanContextValue(BooleanContext.BCType id)
         {
             foreach (var item in this.Options)
-                if (item is BooleanOption && item.Key.Equals(id)) return ((BooleanOption)item).Value;
+                if (item is BooleanContext && (item as BooleanContext).ContextType.Equals(id)) return (item as BooleanContext).Value;
 
             throw new OptionNotFoundException();
         }
-        protected string getStringOptionValue(AbstractOption.OptionType id)
+        protected string getStringOptionValue(StringContext.SCType id)
         {
             foreach (var item in this.Options)
-                if (item is StringOption && item.Key.Equals(id)) return ((StringOption)item).Value;
+                if (item is StringContext && (item as StringContext).ContextType.Equals(id)) return (item as StringContext).Value;
 
             throw new OptionNotFoundException();
         }
-
-        protected List<string> getStringListOptionValue(AbstractOption.OptionType id)
+        protected List<string> getStringListOptionValue(StringListContext.SLType id)
         {
             foreach (var item in this.Options)
-                if (item is StringListOption && item.Key.Equals(id)) return ((StringListOption)item).Value;
+                if (item is StringListContext && (item as StringListContext).ContextType.Equals(id)) return (item as StringListContext).Value;
 
             throw new OptionNotFoundException();
         }
@@ -178,13 +188,13 @@ namespace _7k.Model.ContextElement.Task
         // TODO 4 - Lesz verziózás? Akkor kicsit bonyolultabb lesz.
         public void ValidateAndAmendOptions()
         {
-            List<AbstractOption> defOptList = GetDefaultOptions();
+            List<AbstractContext> defOptList = GetDefaultOptions();
 
-            foreach (AbstractOption item in defOptList)
+            foreach (AbstractContext item in defOptList)
             {
                 Boolean contain = false;
-                foreach (AbstractOption opt in Options)
-                    if(item.Key.Equals(opt.Key))
+                foreach (AbstractContext opt in Options)
+                    if( item.EqualContexts(opt))
                     {
                         contain = true;
                         break;
