@@ -114,7 +114,7 @@ namespace _7k.Model.ContextElement.Task
 
         protected List<AbstractContext> extContextList;
 
-        protected void getContextsForRun()
+        protected void getAllContextsForRun()
         {
             extContextList = CentralContainer.GetAbstractContextList(this);
             if (extContextList == null) extContextList = new List<AbstractContext>();

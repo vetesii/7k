@@ -6,9 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace _7k.Model.ContextElement.Task
 {
+    /// <summary>
+    /// Queue base working
+    /// </summary>
     abstract class AbstractWordCleanerTask : AbstractTask
     {
         static protected object oEmpty = System.Reflection.Missing.Value;
@@ -17,18 +21,32 @@ namespace _7k.Model.ContextElement.Task
 
         protected List<AbstractContext> wordContextList;
 
+        protected WordDocumentContext actual;
+
         public AbstractWordCleanerTask()
         {
             wordContextList = new List<AbstractContext>();
+            actual = null;
         }
 
         protected override void SubAbstractTaskRun()
         {
-            List<WordDocumentContext> wdcList = new List<WordDocumentContext>();
+            List<AbstractContext> wList = new List<AbstractContext>();
 
-            
+            getAllContextsForRun();
 
-            SubAbstractWordCleanerTaskRun();
+            foreach (AbstractContext item in extContextList)
+                if (item is WordDocumentContext)
+                {
+                    WordDocumentContext wdc = item as WordDocumentContext;
+                    if (!testConnection(wdc) && getBooleanContextValue(BooleanContext.BCType.TryToReopenWordDoc)) wdc.ReConnect();
+
+                    if (testConnection(wdc))
+                    {
+                        actual = wdc;
+                        SubAbstractWordCleanerTaskRun();
+                    }
+                }
         }
 
         abstract protected void SubAbstractWordCleanerTaskRun();
@@ -36,7 +54,7 @@ namespace _7k.Model.ContextElement.Task
         public override List<AbstractContext> GetDefaultOptions()
         {
             List<AbstractContext> lst = base.GetDefaultOptions();
-            if(lst == null) lst = new List<AbstractContext>();
+            if (lst == null) lst = new List<AbstractContext>();
 
             lst.Add(new BooleanContext(BooleanContext.BCType.SelectRangeInWord) { Value = false });
             lst.Add(new BooleanContext(BooleanContext.BCType.OpenFilePathToWord) { Value = true });
@@ -95,7 +113,7 @@ namespace _7k.Model.ContextElement.Task
         protected bool wordFindAndReplace(object mit, object mire)
         {
             object oReplaceAll = WdReplace.wdReplaceAll;
-            Range rng = WordProxy.Instance.ActualDocument.Content;
+            Range rng = actual.Doc.Content;
 
             rng.Find.ClearFormatting();
             rng.Find.Text = (String)mit;
@@ -112,7 +130,7 @@ namespace _7k.Model.ContextElement.Task
         protected bool wordFindAndReplaceWithRegex(object mit, object mire)
         {
             object oReplaceAll = WdReplace.wdReplaceAll;
-            Range rng = WordProxy.Instance.ActualDocument.Content;
+            Range rng = actual.Doc.Content;
 
             rng.Find.ClearFormatting();
             rng.Find.Text = (string)mit;
@@ -156,7 +174,7 @@ namespace _7k.Model.ContextElement.Task
         protected void isStyleExist(string neve)
         {
             bool exist = false;
-            foreach (Microsoft.Office.Interop.Word.Style item in WordProxy.Instance.ActualDocument.Styles)
+            foreach (Word.Style item in actual.Doc.Styles)
             {
                 if (item.NameLocal.Equals(neve))
                 {

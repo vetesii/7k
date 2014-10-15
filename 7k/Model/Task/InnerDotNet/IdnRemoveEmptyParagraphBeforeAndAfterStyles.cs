@@ -38,11 +38,11 @@ namespace _7k.Model.ContextElement.Task.InnerDotNet
             Boolean removeAfter = getBooleanContextValue(BooleanContext.BCType.ThenAlso);
             List<String> styles = getStringListOptionValue(StringListContext.SLType.Styles);
 
-            int documentSize = WordProxy.Instance.ActualDocument.Paragraphs.Count;
+            int documentSize = actual.Doc.Paragraphs.Count;
             uint loopCount = 1;
             uint counter = 0;
 
-            Paragraph p = WordProxy.Instance.ActualDocument.Paragraphs[1];
+            Paragraph p = actual.Doc.Paragraphs[1];
             while (p != null)
             {
                 if (styles.Contains(p.get_Style().NameLocal()))
