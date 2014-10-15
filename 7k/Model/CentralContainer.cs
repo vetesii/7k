@@ -1,5 +1,4 @@
 ﻿using _7k.Model.Context;
-using _7k.Model.ContextElement.ContextElement;
 using _7k.Model.ContextElement.Task;
 using _7k.Model.ContextElement.Task.InnerDotNet;
 using System;
@@ -27,8 +26,6 @@ namespace _7k.Model.ContextElement
         public static List<Unity> PriorityTaskList { get; set; }
         public static List<Unity> NormalTaskList { get; set; }
 
-        public static AbstractContextElement BaseContext { get; set; }
-
         static CentralContainer()
         {
             DefaultTaskList = new List<AbstractTask>();
@@ -38,8 +35,6 @@ namespace _7k.Model.ContextElement
             ClosedTaskList = new List<Unity>();
             PriorityTaskList = new List<Unity>();
             NormalTaskList = new List<Unity>();
-
-            BaseContext = null;
 
             RunningTask = null;
         }
@@ -75,7 +70,7 @@ namespace _7k.Model.ContextElement
         public static void AddTaskToPriorityList(Unity uni)
         {
             if (uni == null) return;
-            if (uni.Task == null) return;
+            if (uni.task == null) return;
 
             Unity last = null;
             try

@@ -32,7 +32,7 @@ namespace _7k.Model.ContextElement.Task.InnerDotNet
             return lst;
         }
 
-        protected override void EmbemedStart()
+        protected override void SubAbstractWordCleanerTaskRun()
         {
             Boolean removeBefore = getBooleanContextValue(BooleanContext.BCType.AlsoBefore);
             Boolean removeAfter = getBooleanContextValue(BooleanContext.BCType.ThenAlso);

@@ -15,8 +15,6 @@ namespace _7k.Model.ContextElement.Task
         static protected object oMissing = Type.Missing;
         static protected object oTrue = true;
 
-        static public Boolean _selectRangeInWord = true;
-
         protected List<AbstractContext> wordContextList;
 
         public AbstractWordCleanerTask()
@@ -24,11 +22,26 @@ namespace _7k.Model.ContextElement.Task
             wordContextList = new List<AbstractContext>();
         }
 
+        protected override void SubAbstractTaskRun()
+        {
+            List<WordDocumentContext> wdcList = new List<WordDocumentContext>();
+
+            
+
+            SubAbstractWordCleanerTaskRun();
+        }
+
+        abstract protected void SubAbstractWordCleanerTaskRun();
+
         public override List<AbstractContext> GetDefaultOptions()
         {
             List<AbstractContext> lst = base.GetDefaultOptions();
             if(lst == null) lst = new List<AbstractContext>();
+
             lst.Add(new BooleanContext(BooleanContext.BCType.SelectRangeInWord) { Value = false });
+            lst.Add(new BooleanContext(BooleanContext.BCType.OpenFilePathToWord) { Value = true });
+            lst.Add(new BooleanContext(BooleanContext.BCType.OpenSilentInWord) { Value = false });
+            lst.Add(new BooleanContext(BooleanContext.BCType.TryToReopenWordDoc) { Value = true });
 
             return lst;
         }

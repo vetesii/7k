@@ -10,7 +10,9 @@ namespace _7k.Model.Context
     {
         public enum BCType
         {
-            SelectRangeInWord,
+            // 
+            SelectRangeInWord, OpenFilePathToWord, OpenSilentInWord, TryToReopenWordDoc, 
+            //
             CleanLineBreakToo, DeleteManualCharacterFormatting, DeleteManualParagraphFormatting,
             MFSItalic, MFSBold, MFSSuper, MFSSub, MFSSmallCaps, MFSAllCaps,
             OnlyInExternalStyle, OnlyAfterTitle, NotFormatParagraphWithDashStart,

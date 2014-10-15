@@ -36,7 +36,7 @@ namespace _7k.Model.ContextElement
 
                         if (next != null)
                         {
-                            next.Task.Run();
+                            next.task.Run();
                         }
                         else
                         {

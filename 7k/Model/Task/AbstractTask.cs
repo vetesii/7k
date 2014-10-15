@@ -204,7 +204,6 @@ namespace _7k.Model.ContextElement.Task
             }
         }
 
-        abstract protected void EmbemedStart();
         
         // TODO 2 - Felülvizsgálni, kiegészíteni a hibákat
         public void Run()
@@ -212,7 +211,7 @@ namespace _7k.Model.ContextElement.Task
             try
             {
                 this.State = TaskState.Running;
-                EmbemedStart();
+                SubAbstractTaskRun();
                 this.AutoStart = false;
                 this.State = TaskState.Completed;
                 // TODO - 2 - Jo kerdes ez a torles itt, valoszineleg teljesen el kellene vetni a torles dolgot
@@ -252,6 +251,8 @@ namespace _7k.Model.ContextElement.Task
                 terminateTask("(Ismeretlen hiba történt: " + e.Message + ")");
             }
         }
+        abstract protected void SubAbstractTaskRun();
+
         protected void terminateTask(string message)
         {
             Error = message;
