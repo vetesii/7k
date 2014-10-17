@@ -53,6 +53,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserInterface\Adorners\ResizeAdorner.cs" />
+    <Compile Include="UserInterface\Adorners\ResizeChrome.cs" />
+    <Compile Include="UserInterface\Adorners\RubberbandAdorner.cs" />
+    <Compile Include="UserInterface\DesignerCanvas.cs" />
+    <Compile Include="UserInterface\DesignerItem.cs" />
+    <Compile Include="UserInterface\MoveThumb.cs" />
+    <Compile Include="UserInterface\ResizeDecorator.cs" />
+    <Compile Include="UserInterface\ResizeThumb.cs" />
+    <Compile Include="UserInterface\Toolbox.cs" />
+    <Compile Include="UserInterface\ToolboxItem.cs" />
+    <Compile Include="UserInterface\ZoomBox.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -61,11 +72,74 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Control\ResizeCanvas.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Brushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\DesignerItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ResizeChrome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ScrollBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ScrollViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Slider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\StatusBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Stencils\BasicShapes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Stencils\FlowChartSymbols.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Stencils\RegelungstechnikSymbole.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Stencils\SymbolStencils.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ToolBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Toolbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Tooltip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ZoomBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Context\AbstractContext.cs" />
@@ -150,6 +224,30 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\attention.png" />
+    <Resource Include="Resources\Images\chart1.png" />
+    <Resource Include="Resources\Images\chart2.png" />
+    <Resource Include="Resources\Images\chart3.png" />
+    <Resource Include="Resources\Images\cross.png" />
+    <Resource Include="Resources\Images\mail.png" />
+    <Resource Include="Resources\Images\new.png" />
+    <Resource Include="Resources\Images\newBold.png" />
+    <Resource Include="Resources\Images\nuclear.png" />
+    <Resource Include="Resources\Images\plus.png" />
+    <Resource Include="Resources\Images\ring.png" />
+    <Resource Include="Resources\Images\rotateLeft.png" />
+    <Resource Include="Resources\Images\rotateRight.png" />
+    <Resource Include="Resources\Images\rt1.png" />
+    <Resource Include="Resources\Images\rt2.png" />
+    <Resource Include="Resources\Images\rt3.png" />
+    <Resource Include="Resources\Images\rt4.png" />
+    <Resource Include="Resources\Images\rt5.png" />
+    <Resource Include="Resources\Images\rt6.png" />
+    <Resource Include="Resources\Images\software.png" />
+    <Resource Include="Resources\Images\walk.png" />
+    <Resource Include="Resources\Images\world.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
